@@ -36,7 +36,7 @@ class LitDialog extends LitElement {
       padding: 1rem;
       position: fixed;
     }
-    p ::slotted(*) {
+    .actions {
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
@@ -46,34 +46,30 @@ class LitDialog extends LitElement {
 
   static get properties() {
     return {
-      open: { type: Boolean },
-      dialogTitle: { type: String },
+      opened: { type: Boolean },
+      title: { type: String },
+      closeOnEsc: { type: Boolean },
     };
   }
 
   constructor() {
     super();
-    this.open = false;
-    this.dialogTitle = '';
+    this.opened = false;
+    this.title = '';
     this.watchEscapeKey = this.watchEscapeKey.bind(this);
   }
 
   render() {
-    let dialogTitle = html``;
-
-    if (this.dialogTitle) {
-      dialogTitle = html`<h2 class="lit-dialog_title">${this.dialogTitle}</h2>`;
-    }
-
-    return html`${this.open ? html`
+    const title = (this.title) ? html`<h2 class="lit-dialog_title">${this.title}</h2>` : html``;
+    return html`${this.opened ? html`
       <div class="lit-dialog_wrapper" role="alertdialog">
         <div class="lit-dialog_overlay" @click="${this.close}"></div>
         <div class="dialog" role="dialog">
-          ${dialogTitle}
+          ${title}
           <slot name="content"></slot>
-          <p>
+          <div class="actions">
             <slot name="actions"></slot>
-          </p>
+          </div>
         </div>
       </div>
       ` : null}
@@ -81,12 +77,15 @@ class LitDialog extends LitElement {
   }
 
   updated(properties) {
-    if (properties.has('open')) {
-      if (this.open) {
+    // When 'opened' prop is updated, set/remove event listeners depending on opened state
+    // And fire custom events (still depending on opened state
+    if (properties.has('opened')) {
+      if (this.opened) {
         this.setEventListeners();
       } else {
         this.removeEventListeners();
       }
+      this.sendCustomEvent();
     }
   }
 
@@ -98,20 +97,34 @@ class LitDialog extends LitElement {
     document.removeEventListener('keydown', this.watchEscapeKey);
   }
 
-  close() {
-    this.open = false;
-    const closeEvent = new CustomEvent('dialog-closed', {
+  sendCustomEvent() {
+    const event = new CustomEvent('opened-changed', {
       detail: {
-        message: this.open,
+        value: this.opened,
       },
-      bubbles: true,
-      composed: true,
     });
-    this.dispatchEvent(closeEvent);
+    this.dispatchEvent(event);
   }
 
+  /**
+   * Close the Dialog
+   */
+  close() {
+    this.opened = false;
+  }
+
+  /**
+   * Open the Dialog
+   */
+  open() {
+    this.opened = true;
+  }
+
+  /**
+   * Pressing the ESC key will close the dialog
+   */
   watchEscapeKey(event) {
-    if (event.key === 'Escape') {
+    if (event.key === 'Escape' && this.closeOnEsc) {
       this.close();
     }
   }

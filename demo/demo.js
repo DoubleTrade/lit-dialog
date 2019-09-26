@@ -4,12 +4,11 @@ import '../lit-dialog';
 
 class LitDialogDemo extends LitElement {
   static get styles() {
-    const mainStyle = css`
+    return css`
       :host {
         display: block;
       }
     `;
-    return [mainStyle];
   }
 
   static get properties() {
@@ -24,18 +23,16 @@ class LitDialogDemo extends LitElement {
   }
 
   firstUpdated() {
-    this.addEventListener('dialog-closed', (e) => {
+    this.shadowRoot.querySelector('lit-dialog').addEventListener('opened-changed', (e) => {
       const { detail } = e;
-      console.warn(detail);
-      console.warn(detail.message);
-      this.opened = detail.message;
+      this.opened = detail.value;
     });
   }
 
   render() {
     return html`<div id="demo">
       ${this.buttonTemplate}
-      <lit-dialog dialogTitle="Title" ?open="${this.opened}">
+      <lit-dialog title="Title" ?closeOnEsc="${true}">
         <p slot="content"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         <div slot="actions">
           ${this.buttonTemplate}
@@ -50,6 +47,11 @@ class LitDialogDemo extends LitElement {
   }
 
   switchDialogStatus() {
+    if (this.opened) {
+      this.shadowRoot.querySelector('lit-dialog').close()
+    } else {
+      this.shadowRoot.querySelector('lit-dialog').open()
+    }
     this.opened = !this.opened;
   }
 }
