@@ -1,0 +1,36 @@
+{
+  "name": "lit-dialog",
+  "version": "0.0.1",
+  "description": "lit-dialog provides a basic dialog written in LitElement.",
+  "main": "lit-dialog.js",
+  "scripts": {
+    "lint:javascript": "eslint . --ext js --ignore-path .gitignore --quiet",
+    "serve": "polymer serve"
+  },
+  "keywords": [
+    "web-component",
+    "web-components",
+    "modal",
+    "dialog",
+    "litelement"
+  ],
+  "author": "Laurent Zvara <PhriKaDel>",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "polymer-cli": "^1.9.11"
+  },
+  "dependencies": {
+    "@polymer/iron-demo-helpers": "3.1.0",
+    "@polymer/iron-flex-layout": "^3.0.1",
+    "@polymer/polymer": "3.2.0",
+    "lit-element": "^2.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DoubleTrade/lit-datatable"
+  }
+}
