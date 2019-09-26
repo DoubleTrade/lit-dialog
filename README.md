@@ -9,8 +9,13 @@
 - Add tests
 
 ## Install
+For dev purpose:
 ```
 git clone git@github.com:DoubleTrade/lit-dialog.git
+```
+For user purpose:
+```
+npm install @doubleTrade/lit-dialog
 ```
 
 ## Launch demo
@@ -37,29 +42,29 @@ npm run lint:javascript
 
 ### Slots
 
-| Name | Description |
-| ----------- | ----------- |
-| `content` | Content to display in dialog|
-| `actions` | Area for buttons |
+| Name      | Description                  |
+| --------- | ---------------------------- |
+| `content` | Content to display in dialog |
+| `actions` | Area for buttons             |
 
 ### Properties/Attributes
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `opened` | `Boolean` | Open/close the dialog depending on boolean value |
-| `title` | `String` | Title of the dialog |
-| `closeOnEsc` | `Boolean` | Close on Pressing ESCAPE key |
+| Name         | Type      | Description                                      |
+| ------------ | --------- | ------------------------------------------------ |
+| `opened`     | `Boolean` | Open/close the dialog depending on boolean value |
+| `title`      | `String`  | Title of the dialog                              |
+| `closeOnEsc` | `Boolean` | Close on Pressing ESCAPE key                     |
 
 
 ### Methods
 
-| Name | Description |
-| ----------- | ----------- |
-| `open() => void` | Open the dialog |
+| Name              | Description      |
+| ----------------- | ---------------- |
+| `open() => void`  | Open the dialog  |
 | `close() => void` | Close the dialog |
 
 ### Events
 
-| Name | Target | Detail | Description |
-| ----------- | ---- | ---- |------- |
-| `opened-changed` | `lit-dialog` | `{value: Boolean}`| Fired when the dialog is opened or closed |
+| Name             | Target       | Detail             | Description                               |
+| ---------------- | ------------ | ------------------ | ----------------------------------------- |
+| `opened-changed` | `lit-dialog` | `{value: Boolean}` | Fired when the dialog is opened or closed |
