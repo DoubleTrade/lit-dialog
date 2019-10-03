@@ -7,6 +7,7 @@ class LitDialogDemo extends LitElement {
     return css`
       :host {
         display: block;
+        margin-left:250px;
       }
     `;
   }
@@ -14,12 +15,14 @@ class LitDialogDemo extends LitElement {
   static get properties() {
     return {
       opened: { type: Boolean },
+      content: { type: String },
     };
   }
 
   constructor() {
     super();
     this.opened = false;
+    this.content = Math.random();
   }
 
   firstUpdated() {
@@ -29,21 +32,34 @@ class LitDialogDemo extends LitElement {
     });
   }
 
+  get dialogContentTemplate() {
+    return html`
+      <div>
+        ${this.content}
+      </div>
+      <button name="button" @click="${() => this.content = Math.random(0)}">Change Content</button>
+      `;
+  }
+
   render() {
     return html`<div id="demo">
       ${this.buttonTemplate}
-      <lit-dialog title="Title" ?closeOnEsc="${true}">
-        <p slot="content"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <div slot="actions">
-          ${this.buttonTemplate}
-        </div>
+      <lit-dialog 
+        title="Title" 
+        ?closeOnEsc="${true}" 
+        .html="${this.dialogContentTemplate}"
+      >
       </lit-dialog>
     </div>`;
   }
 
   get buttonTemplate() {
     const buttonTitle = (this.opened) ? 'Hide Dialog' : 'Display Dialog';
-    return html`<button name="button" @click="${this.switchDialogStatus}"> ${buttonTitle} </button>`;
+    return html`
+      <p>Click on the button below to open the dialog.</p>
+      <button name="button" @click="${this.switchDialogStatus}"> ${buttonTitle} </button>
+      <p>Even if the sidebar is opened, the dialog is displayed over.</p>
+    `;
   }
 
   switchDialogStatus() {

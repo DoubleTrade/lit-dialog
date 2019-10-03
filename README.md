@@ -30,22 +30,17 @@ npm run lint:javascript
 
 ## Simple example
 ```html
-<lit-dialog dialogTitle="Title" opened>
-  <p slot="content"> This dialog is totally awesome.</p>
-  <div slot="actions">
-    <button name="button" @click="() => {console.log('Hello World')}"> Click Me </button>
-  </div>
+<lit-dialog title="Title" opened .html="This is a message">
+</lit-dialog>
+```
+
+
+```html
+<lit-dialog opened .html="">
 </lit-dialog>
 ```
 
 ## API
-
-### Slots
-
-| Name      | Description                  |
-| --------- | ---------------------------- |
-| `content` | Content to display in dialog |
-| `actions` | Area for buttons             |
 
 ### Properties/Attributes
 
@@ -53,7 +48,8 @@ npm run lint:javascript
 | ------------ | --------- | ------------------------------------------------ |
 | `opened`     | `Boolean` | Open/close the dialog depending on boolean value |
 | `title`      | `String`  | Title of the dialog                              |
-| `closeOnEsc` | `Boolean` | Close on Pressing ESCAPE key                     |
+| `html`       | `Object`  | Content to display, you can put a String, or a full HTML template |
+| `closeOnEsc` | `Boolean` | Close on Pressing ESCAPE key  (default to true)                   |
 
 
 ### Methods
