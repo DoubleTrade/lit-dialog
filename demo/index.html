@@ -68,6 +68,7 @@
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="javascript:void(0)" onclick="openDialog()">Open a Dialog</a>
+    <a href="javascript:void(0)" onclick="openNoTitleDialog()">Open a No Title Dialog</a>
   </div>
 
   <h2>Dialog Example</h2>
@@ -77,11 +78,19 @@
   <script>
     function openDialog() {
       const dialog = document.createElement('lit-dialog');
-      dialog.setAttribute('id', 'lit-dialog-test');
-      dialog.setAttribute('title', 'message');
-      // dialog.setAttribute('closeOnEsc', true);
+      dialog.setAttribute('id', 'lit-dialog-with-title');
+      dialog.setAttribute('title', 'Title of the dialog');
+      dialog.setAttribute('html', 'PRESS ESCAPE KEY TO CLOSE');
       document.body.appendChild(dialog);
-      document.body.querySelector('lit-dialog').open();
+      document.body.querySelector('#lit-dialog-with-title').open();
+    }
+
+    function openNoTitleDialog() {
+      const noTitleDialog = document.createElement('lit-dialog');
+      noTitleDialog.setAttribute('id', 'lit-dialog-without-title');
+      noTitleDialog.setAttribute('html', 'PRESS ESCAPE KEY TO CLOSE');
+      document.body.appendChild(noTitleDialog);
+      document.body.querySelector('#lit-dialog-without-title').open();
     }
 
     function openNav() {
