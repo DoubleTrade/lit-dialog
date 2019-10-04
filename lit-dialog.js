@@ -7,7 +7,14 @@ class LitDialog extends LitElement {
       opened: { type: Boolean },
       title: { type: String },
       closeOnEsc: { type: Boolean },
-      html: { type: Object },
+      html: {
+        type: Object,
+        converter: (value) => {
+          if (typeof value !== 'object') {
+            return html`${value}`
+          }
+        },
+      }
     };
   }
 

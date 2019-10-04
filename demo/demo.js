@@ -22,7 +22,7 @@ class LitDialogDemo extends LitElement {
   constructor() {
     super();
     this.opened = false;
-    this.content = Math.random();
+    this.content = this.getRandomString();
   }
 
   firstUpdated() {
@@ -32,12 +32,16 @@ class LitDialogDemo extends LitElement {
     });
   }
 
+  getRandomString() {
+    return Math.floor(Math.random() * 100).toString();
+  }
+
   get dialogContentTemplate() {
     return html`
       <div>
         ${this.content}
       </div>
-      <button name="button" @click="${() => this.content = Math.random(0)}">Change Content</button>
+      <button name="button" @click="${() => this.content = this.getRandomString()}">Change Content</button>
       `;
   }
 
