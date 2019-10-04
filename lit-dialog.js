@@ -51,21 +51,33 @@ class LitDialog extends LitElement {
   }
 
   dialogTemplate() {
-    const title = (this.title) ? html`<h2 class="lit-dialog_title">${this.title}</h2>` : html``;
-    const htmlTemplate = (this.html) ? this.html : html`<div>NO CONTENT</div>`;
+    const title = (this.title) ? html`
+      <style>
+        .lit-dialog_header {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: 15px;
+          margin-bottom: 20px;
+          border-bottom: 1px solid #e0e0e0;
+        }
+
+        .lit-dialog_title {
+          font-size: 17px;
+          margin: 0;
+          color: black;
+        }
+      </style>
+      <div class="lit-dialog_header">
+        <h2 class="lit-dialog_title">${this.title}</h2>
+      </div>
+    ` : html``;
+    console.warn('render: ', this.html);
+    const htmlTemplate = (this.html) ? this.html : html``;
     return html`
     <style>
       :host {
         display: block;
-      }
-      
-      #lit-dialog-overlay {
-        position: absolute; 
-        height: 100%; 
-        width: 100%;
-        left: 0px;
-        top: 0px;
-        z-index: 1;
       }
 
       .lit-dialog_wrapper {
@@ -78,8 +90,9 @@ class LitDialog extends LitElement {
         right: 0;
         bottom: 0;
       }
+
       .lit-dialog_overlay {
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(0, 0, 0, 0.5);
         height: 100%;
         position: fixed;
         top: 0;
@@ -87,25 +100,20 @@ class LitDialog extends LitElement {
         bottom: 0;
         left: 0;
         width: 100%;
+        margin: 0;
       }
-      .lit-dialog_title {
-        color: black;
-      }
-      .dialog {
-        flex-direction: column;
-        background: #ffffff;
-        padding: 1rem;
+
+      .lit-dialog_content {
+        min-width: 300px;
+        min-height: 150px;
+        background: rgb(255, 255, 255);
         position: fixed;
-      }
-      .actions {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
+        box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.5);
       }
     </style>
-    <div class="lit-dialog_wrapper" role="alertdialog" id="lit-dialog">
+    <div class="lit-dialog_wrapper">
       <div class="lit-dialog_overlay" @click="${this.close}"></div>
-      <div class="dialog" role="dialog">
+      <div class="lit-dialog_content">
         ${title}
         ${htmlTemplate}
       </div>
