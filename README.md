@@ -49,8 +49,13 @@ npm run lint:javascript
 | `opened`     | `Boolean` | Open/close the dialog depending on boolean value |
 | `title`      | `String`  | Title of the dialog                              |
 | `html`       | `Object`  | Content to display, you can put a String, or a full HTML template |
-| `closeOnEsc` | `Boolean` | Close on Pressing ESCAPE key  (default to true)                   |
-
+| `closeOnEsc` | `Boolean` | Close on Pressing ESCAPE key  (default to false)                   |
+| `closeOnClickOutside` | `Boolean` | Close on Clicking Outside the dialog  (default to false)                   |
+| `closeIcon` | `Boolean` | add a close Icon (default to false)                   |
+| `primaryAction` | `Boolean` | Display a button  (default to false)              |
+| `primaryActionLabel` | `String` | Label of primary action (default to 'Ok')                   |
+| `secondaryAction` | `Boolean` | Display a second button  (default to false)              |
+| `secondaryActionLabel` | `String` | Label of primary action (default to 'Cancel')                   |
 
 ### Methods
 
@@ -64,3 +69,5 @@ npm run lint:javascript
 | Name             | Target       | Detail             | Description                               |
 | ---------------- | ------------ | ------------------ | ----------------------------------------- |
 | `opened-changed` | `lit-dialog` | `{value: Boolean}` | Fired when the dialog is opened or closed |
+| `primary-action-clickedd` | `lit-dialog` |  | Fired when the primary action is clicked |
+| `secondary-action-clickedd` | `lit-dialog` |  | Fired when the secondary action is clicked |
