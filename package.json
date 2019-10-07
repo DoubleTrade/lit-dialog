@@ -26,6 +26,9 @@
   "dependencies": {
     "@polymer/iron-demo-helpers": "3.1.0",
     "@polymer/iron-flex-layout": "^3.0.1",
+    "@polymer/iron-icons": "^3.0.1",
+    "@polymer/paper-button": "^3.0.1",
+    "@polymer/paper-icon-button": "^3.0.2",
     "@polymer/polymer": "3.2.0",
     "lit-element": "^2.1.0"
   },
