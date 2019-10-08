@@ -1,6 +1,6 @@
 {
   "name": "@doubletrade/lit-dialog",
-  "version": "0.0.1",
+  "version": "1.0.2",
   "description": "lit-dialog provides a basic dialog written in LitElement.",
   "main": "lit-dialog.js",
   "scripts": {
@@ -34,6 +34,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/DoubleTrade/lit-datatable"
+    "url": "https://github.com/DoubleTrade/lit-dialog"
   }
 }
