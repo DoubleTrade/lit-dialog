@@ -5,7 +5,14 @@
   "main": "lit-dialog.js",
   "scripts": {
     "lint:javascript": "eslint . --ext js --ignore-path .gitignore --quiet",
-    "serve": "polymer serve"
+    "serve": "polymer serve",
+    "test": "karma start --coverage",
+    "test:watch": "karma start --auto-watch=true --single-run=false",
+    "test:update-snapshots": "karma start --update-snapshots",
+    "test:prune-snapshots": "karma start --prune-snapshots",
+    "test:compatibility": "karma start --compatibility all --coverage",
+    "test:compatibility:watch": "karma start --compatibility all --auto-watch=true --single-run=false",
+    "test:bs": "karma start karma.bs.config.js --compatibility all --coverage"
   },
   "keywords": [
     "web-component",
@@ -21,7 +28,11 @@
     "eslint": "^6.3.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
-    "polymer-cli": "^1.9.11"
+    "polymer-cli": "^1.9.11",
+    "@open-wc/testing-karma": "^3.0.0",
+    "webpack-merge": "^4.1.5",
+    "@open-wc/testing-karma-bs": "^1.0.0",
+    "@open-wc/testing": "^2.0.0"
   },
   "dependencies": {
     "@polymer/iron-demo-helpers": "3.1.0",

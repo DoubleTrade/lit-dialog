@@ -5,15 +5,17 @@
 
 ## Roadmap
 - Material Design
-- Publish on npm
 - Add tests
 
 ## Install
 For dev purpose:
+
 ```
 git clone git@github.com:DoubleTrade/lit-dialog.git
 ```
+
 For user purpose:
+
 ```
 npm install @doubleTrade/lit-dialog
 ```

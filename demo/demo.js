@@ -92,7 +92,6 @@ class LitDialogDemo extends LitElement {
         <h2> Dialog (primaryAction) </h2>
         ${buttonTemplate('#primaryAction')}
         <lit-dialog
-          ?closeIcon=${true}
           ?closeOnEsc=${true}
           ?closeOnClickOutside=${true}
           id="primaryAction"

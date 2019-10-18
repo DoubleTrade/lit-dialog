@@ -1,9 +1,9 @@
 import { LitElement, css } from 'lit-element';
 import { html, render } from 'lit-html';
 
-import '@polymer/paper-button/paper-button';
-import '@polymer/iron-icons/iron-icons';
-import '@polymer/paper-icon-button/paper-icon-button';
+import './lit-dialog-title';
+import './lit-dialog-close-icon';
+import './lit-dialog-button';
 
 class LitDialog extends LitElement {
   static get properties() {
@@ -87,30 +87,15 @@ class LitDialog extends LitElement {
   }
 
   dialogTemplate() {
-    const closeIcon = (this.closeIcon) ? html`
+    let header = null;
+    if (this.title || this.closeIcon) {
+      header = html`
       <style>
-        paper-icon-button {
-          float: right;
-        }
-      </style>
-      <paper-icon-button icon="close" @tap=${this.close.bind(this)}=></paper-icon-button>
-    ` : null;
-
-    const title = (this.title) ? html`
-      <style>
-        .lit-dialog_title {
-          float: left;
-          font-size: 17px;
-          color: black;
-        }
-      </style>
-      <h2 class="lit-dialog_title">${this.title}</h2>
-    ` : null;
-
-    const header = html`
-      <style>
-          .lit-dialog_header {
-          display: block;
+        .lit-dialog_header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-direction: row;
           overflow: hidden;
           padding: 15px;
           margin-bottom: 20px;
@@ -121,25 +106,11 @@ class LitDialog extends LitElement {
         }
       </style>
       <div class="lit-dialog_header">
-        ${title}
-        ${closeIcon}
+        ${(this.title) ? html`<lit-dialog-title title="${this.title}"></lit-dialog-title>` : html``}
+        ${(this.closeIcon) ? html`<lit-dialog-close-icon @tap=${this.close.bind(this)}></lit-dialog-close-icon>` : html``}
       <div>
     `;
-
-    const actionButtons = (label, clickHandler) => html`
-      <style>
-        .lit-dialog_buttons {
-          float: right;
-        }
-      </style>
-      <paper-button
-        class="lit-dialog_buttons"
-        ?raised="${true}"
-        @click="${(e) => clickHandler(e)}"
-      >
-        ${label}
-      </paper-button>
-    `;
+    }
 
     const footer = html`
       <style>
@@ -157,8 +128,8 @@ class LitDialog extends LitElement {
         }
       </style>
       <div class="lit-dialog_footer">
-          ${(this.primaryAction) ? actionButtons(this.primaryActionLabel, () => this.handlePrimaryAction()) : null}
-          ${(this.secondaryAction) ? actionButtons(this.secondaryActionLabel, () => this.handleSecondaryAction()) : null}
+          ${(this.primaryAction) ? html`<lit-dialog-button label="${this.primaryActionLabel}" @click="${this.handlePrimaryAction.bind(this)}">` : null}
+          ${(this.secondaryAction) ? html`<lit-dialog-button label="${this.secondaryActionLabel}" @click="${this.handleSecondaryAction.bind(this)}">` : null}
       </div>
     `;
 
@@ -217,7 +188,7 @@ class LitDialog extends LitElement {
     <div class="lit-dialog">
       <div class="lit-dialog_overlay" @click="${() => this.watchClickOutside()}"></div>
       <div class="lit-dialog_wrapper">
-        ${(this.title || this.closeIcon) ? header : null}
+        ${header}
         ${htmlTemplate}
         ${footer}
       </div>
@@ -232,7 +203,6 @@ class LitDialog extends LitElement {
   handleSecondaryAction(e) {
     this.dispatchEvent(new CustomEvent('secondary-action-clicked'));
   }
-
 
   createDialogOverlayDiv() {
     const overlay = document.createElement('div');
