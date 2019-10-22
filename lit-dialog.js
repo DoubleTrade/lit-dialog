@@ -101,21 +101,18 @@ class LitDialog extends LitElement {
           margin-bottom: 20px;
           border-bottom: 1px solid #e0e0e0;
         }
-        .lit-dialog_header:empty {
-          display none;
-        }
       </style>
       <div class="lit-dialog_header">
-        ${(this.title) ? html`<lit-dialog-title title="${this.title}"></lit-dialog-title>` : html``}
-        ${(this.closeIcon) ? html`<lit-dialog-close-icon @tap=${this.close.bind(this)}></lit-dialog-close-icon>` : html``}
-      <div>
+        ${(this.title) ? html`<lit-dialog-title title="${this.title}"></lit-dialog-title>` : null}
+        ${(this.closeIcon) ? html`<lit-dialog-close-icon @tap=${this.close.bind(this)}></lit-dialog-close-icon>` : null}
+      </div>
     `;
     }
 
     const footer = html`
       <style>
         .lit-dialog_footer {
-          position: absolute;
+          position: relative;
           bottom: 0px;
           right: 0px;
           margin-bottom: 10px;
@@ -156,7 +153,7 @@ class LitDialog extends LitElement {
         flex-direction: column;
         margin: auto;
         justify-content: center;
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         right: 0;
@@ -165,7 +162,7 @@ class LitDialog extends LitElement {
 
       .lit-dialog_overlay {
         background: rgba(0, 0, 0, 0.5);
-        position: absolute;
+        position: fixed;
         top: 0;
         right: 0;
         bottom: 0;
@@ -177,8 +174,7 @@ class LitDialog extends LitElement {
       .lit-dialog_wrapper {
         overflow: auto;
         border-radius: 4px;
-        min-width: 33%;
-        min-height: 25%;
+        padding: 5px;
         max-width: 90%;
         max-height: 90%;
         background: rgb(255, 255, 255);
