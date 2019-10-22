@@ -1,6 +1,6 @@
 {
   "name": "@doubletrade/lit-dialog",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "lit-dialog provides a basic dialog written in LitElement.",
   "main": "lit-dialog.js",
   "scripts": {
@@ -11,8 +11,7 @@
     "test:update-snapshots": "karma start --update-snapshots",
     "test:prune-snapshots": "karma start --prune-snapshots",
     "test:compatibility": "karma start --compatibility all --coverage",
-    "test:compatibility:watch": "karma start --compatibility all --auto-watch=true --single-run=false",
-    "test:bs": "karma start karma.bs.config.js --compatibility all --coverage"
+    "test:compatibility:watch": "karma start --compatibility all --auto-watch=true --single-run=false"
   },
   "keywords": [
     "web-component",

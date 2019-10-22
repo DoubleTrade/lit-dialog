@@ -3,10 +3,6 @@
 `lit-dialog` is a simple dialog web component.
 
 
-## Roadmap
-- Material Design
-- Add tests
-
 ## Install
 For dev purpose:
 
@@ -71,5 +67,5 @@ npm run lint:javascript
 | Name             | Target       | Detail             | Description                               |
 | ---------------- | ------------ | ------------------ | ----------------------------------------- |
 | `opened-changed` | `lit-dialog` | `{value: Boolean}` | Fired when the dialog is opened or closed |
-| `primary-action-clickedd` | `lit-dialog` |  | Fired when the primary action is clicked |
-| `secondary-action-clickedd` | `lit-dialog` |  | Fired when the secondary action is clicked |
+| `primary-action-clicked` | `lit-dialog` |  | Fired when the primary action is clicked |
+| `secondary-action-clicked` | `lit-dialog` |  | Fired when the secondary action is clicked |
