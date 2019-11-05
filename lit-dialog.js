@@ -109,26 +109,26 @@ class LitDialog extends LitElement {
     `;
     }
 
-    const footer = html`
-      <style>
-        .lit-dialog_footer {
-          position: relative;
-          bottom: 0px;
-          right: 0px;
-          margin-bottom: 10px;
-          margin-right: 10px;
-          display: block
-          overflow: hidden;
-        }
-        .lit-dialog_footer:empty {
-          display none;
-        }
-      </style>
-      <div class="lit-dialog_footer">
+    let footer = null;
+    if (this.primaryAction || this.secondaryAction) {
+      footer = html`
+        <style>
+          .lit-dialog_footer {
+            position: relative;
+            bottom: 0px;
+            right: 0px;
+            margin-bottom: 10px;
+            margin-right: 10px;
+            display: block;
+            overflow: hidden;
+          }
+        </style>
+        <div class="lit-dialog_footer">
           ${(this.primaryAction) ? html`<lit-dialog-button label="${this.primaryActionLabel}" @click="${this.handlePrimaryAction.bind(this)}">` : null}
           ${(this.secondaryAction) ? html`<lit-dialog-button label="${this.secondaryActionLabel}" @click="${this.handleSecondaryAction.bind(this)}">` : null}
-      </div>
-    `;
+        </div>
+      `;
+    }
 
     const htmlTemplate = (this.html) ? html`
       <style>
