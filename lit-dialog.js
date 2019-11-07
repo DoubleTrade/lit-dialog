@@ -174,7 +174,6 @@ class LitDialog extends LitElement {
       .lit-dialog_wrapper {
         overflow: auto;
         border-radius: 4px;
-        padding: 5px;
         max-width: 90%;
         max-height: 90%;
         background: rgb(255, 255, 255);
