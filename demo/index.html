@@ -81,6 +81,7 @@
       dialog.setAttribute('id', 'lit-dialog-with-title');
       dialog.setAttribute('title', 'Title of the dialog');
       dialog.setAttribute('html', 'PRESS ESCAPE KEY TO CLOSE');
+      dialog.setAttribute('closeOnEsc', true);
       document.body.appendChild(dialog);
       document.body.querySelector('#lit-dialog-with-title').open();
     }
@@ -89,6 +90,7 @@
       const noTitleDialog = document.createElement('lit-dialog');
       noTitleDialog.setAttribute('id', 'lit-dialog-without-title');
       noTitleDialog.setAttribute('html', 'PRESS ESCAPE KEY TO CLOSE');
+      dialog.setAttribute('closeOnEsc', true);
       document.body.appendChild(noTitleDialog);
       document.body.querySelector('#lit-dialog-without-title').open();
     }
