@@ -11,7 +11,12 @@ class LitDialog extends LitElement {
       /**
        * opened (Boolean) [false] - Open/close the dialog depending on value (default to false)
        * */
-      opened: { type: Boolean },
+      opened: {
+        type: Boolean,
+        hasChanged(newVal, oldVal) {
+          return (oldVal === false && newVal === true) || (oldVal === true && newVal === false);
+        }
+      },
       /**
        * title (String) - Title of the dialog
        * */
@@ -82,6 +87,9 @@ class LitDialog extends LitElement {
   updateDialogContent() {
     if (!this.opened) {
       return;
+    }
+    if (!document.querySelector('#lit-dialog-overlay')) {
+      this.createDialogOverlayDiv();
     }
     render(this.dialogTemplate(), document.querySelector('#lit-dialog-overlay'));
   }
