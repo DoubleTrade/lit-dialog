@@ -209,8 +209,12 @@ class LitDialog extends LitElement {
   }
 
   createDialogOverlayDiv() {
+    const id = 'lit-dialog-overlay';
+    if (document.getElementById(id)) {
+      return document.getElementById(id);
+    }
     const overlay = document.createElement('div');
-    overlay.setAttribute('id', 'lit-dialog-overlay');
+    overlay.setAttribute('id', id);
     return document.body.appendChild(overlay);
   }
 
