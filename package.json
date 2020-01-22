@@ -3,8 +3,13 @@
   "version": "1.0.9",
   "description": "lit-dialog provides a basic dialog written in LitElement.",
   "main": "lit-dialog.js",
+  "module": "lit-dialog.js",
   "scripts": {
-    "lint:javascript": "eslint . --ext js --ignore-path .gitignore --quiet",
+    "build": "tsc",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "lint": "eslint . --ext ts --ignore-path .gitignore --quiet",
+    "postinstall": "tsc",
     "serve": "polymer serve",
     "test": "karma start --coverage",
     "test:watch": "karma start --auto-watch=true --single-run=false",
@@ -23,15 +28,17 @@
   "author": "Laurent Zvara <PhriKaDel>",
   "license": "ISC",
   "devDependencies": {
-    "babel-eslint": "^10.0.3",
-    "eslint": "^6.3.0",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2",
-    "polymer-cli": "^1.9.11",
+    "@open-wc/testing": "^2.0.0",
     "@open-wc/testing-karma": "^3.0.0",
-    "webpack-merge": "^4.1.5",
     "@open-wc/testing-karma-bs": "^1.0.0",
-    "@open-wc/testing": "^2.0.0"
+    "@typescript-eslint/eslint-plugin": "^2.17.0",
+    "@typescript-eslint/parser": "^2.17.0",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.0",
+    "polymer-cli": "^1.9.11",
+    "webpack-merge": "^4.1.5"
   },
   "dependencies": {
     "@polymer/iron-demo-helpers": "3.1.0",
@@ -40,7 +47,9 @@
     "@polymer/paper-button": "^3.0.1",
     "@polymer/paper-icon-button": "^3.0.2",
     "@polymer/polymer": "3.2.0",
-    "lit-element": "^2.1.0"
+    "lit-element": "^2.1.0",
+    "lit-html": "^1.1.2",
+    "typescript": "^3.7.5"
   },
   "repository": {
     "type": "git",

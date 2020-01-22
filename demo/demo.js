@@ -20,6 +20,7 @@ class LitDialogDemo extends LitElement {
 
   constructor() {
     super();
+    this.id = null;
     this.content = this.getRandomString();
   }
 
@@ -68,8 +69,9 @@ class LitDialogDemo extends LitElement {
         <lit-dialog
           id="closeOnEsc"
           title="ESCAPE KEY"
-          ?closeOnEsc="${true}"
-          .html=".html="Close by pressing escape"
+          .closeOnEsc=${true}
+          .html="Close by pressing escape"
+          @opened-changed=${this.openedChanged.bind(this)}
         >
         </lit-dialog>
       <div>
@@ -79,8 +81,9 @@ class LitDialogDemo extends LitElement {
         <lit-dialog
           id="closeOnClickOutside"
           title="CLICK OUTSIDE"
-          ?closeOnClickOutside="${true}"
+          ?closeOnClickOutside=${true}
           .html="Close by clicking outside"
+          @opened-changed=${this.openedChanged.bind(this)}
         >
         </lit-dialog>
       <div>
@@ -91,8 +94,9 @@ class LitDialogDemo extends LitElement {
         <lit-dialog
           title="title"
           id="closeIcon"
-          ?closeIcon="${true}"
-          .html="${this.dialogContentTemplate}"
+          ?closeIcon=${true}
+          .html=${this.dialogContentTemplate}
+          @opened-changed=${this.openedChanged.bind(this)}
         >
         </lit-dialog>
       <div>
@@ -104,11 +108,13 @@ class LitDialogDemo extends LitElement {
           ?closeOnEsc=${true}
           ?closeOnClickOutside=${true}
           id="primaryAction"
-          .html="${this.dialogContentTemplate}"
-          ?primaryAction="${true}"
-          ?secondaryAction="${true}"
+          .html=${this.dialogContentTemplate}
+          ?primaryAction=${true}
+          ?secondaryAction=${true}
           primaryActionLabel="Change content"
-          @primary-action-clicked="${() => { this.onPrimaryActionClicked() }}"
+          @primary-action-clicked=${this.onPrimaryActionClicked.bind(this)}
+          @secondary-action-clicked=${this.onSecondaryActionClicked.bind(this)}
+          @opened-changed=${this.openedChanged.bind(this)}
         >
         </lit-dialog>
       <div>
@@ -120,7 +126,8 @@ class LitDialogDemo extends LitElement {
           ?closeOnEsc=${true}
           ?closeOnClickOutside=${true}
           id="longContent"
-          .html="${this.dialogLongContentTemplate}"
+          .html=${this.dialogLongContentTemplate}
+          @opened-changed=${this.openedChanged.bind(this)}
         >
         </lit-dialog>
       <div>
@@ -128,12 +135,26 @@ class LitDialogDemo extends LitElement {
     </div>`;
   }
 
+  openedChanged({ detail }) {
+    console.log('openedChanged', detail);
+    const { value } = detail;
+    if (value) {
+      this.id = null;
+    }
+  }
+
   onPrimaryActionClicked() {
     console.log('Primary Action pressed');
     this.content = this.getRandomString();
   }
 
+  onSecondaryActionClicked() {
+    console.log('Secondary Action pressed');
+    this.shadowRoot.querySelector(this.id).close();
+  }
+
   openDialog(id) {
+    this.id = id;
     this.shadowRoot.querySelector(id).open()
   }
 }

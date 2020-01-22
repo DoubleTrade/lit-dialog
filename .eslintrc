@@ -1,15 +1,25 @@
 {
-  "extends": "airbnb-base",
-  "parser": "babel-eslint",
-  "rules": {
-    "class-methods-use-this": "off",
-    "no-param-reassign": "off"
-  },
   "env": {
-      "browser": true,
+    "browser": true,
+    "es6": true
   },
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "sourceType": "module",
-    "allowImportExportEverywhere": true
+    "ecmaVersion": 2018,
+    "project": "./tsconfig.json"
+  },
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "airbnb-base",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "class-methods-use-this": "off"
   }
 }

@@ -1,26 +1,22 @@
-import { LitElement, css, html } from 'lit-element';
+import {
+  LitElement, css, html, property,
+} from 'lit-element';
 import '@polymer/paper-button/paper-button';
 
-class LitDialogButton extends LitElement {
-  static get properties() {
-    return {
-      label: { type: String },
-    }
-  }
+import { CSSResult } from 'lit-element/lib/css-tag';
+import { TemplateResult } from 'lit-html/lib/template-result';
 
-  static get styles() {
+class LitDialogButton extends LitElement {
+  @property({ type: String }) label = '';
+
+  static get styles(): CSSResult {
     return css`
       .lit-dialog_button {
         float: right;
       }`;
   }
 
-  constructor() {
-    super();
-    this.label = '';
-  }
-
-  render() {
+  render(): TemplateResult {
     return html`
       <paper-button
         class="lit-dialog_button"
@@ -32,4 +28,3 @@ class LitDialogButton extends LitElement {
 }
 
 window.customElements.define('lit-dialog-button', LitDialogButton);
-
