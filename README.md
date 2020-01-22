@@ -23,7 +23,7 @@ npm run serve
 
 ## Lint
 ```
-npm run lint:javascript
+npm run lint
 ```
 
 ## Simple example

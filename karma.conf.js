@@ -18,6 +18,19 @@ module.exports = config => {
         nodeResolve: true,
       },
       // you can overwrite/extend the config further
+      coverageIstanbulReporter: {
+        thresholds: {
+          // set to `true` to not fail the test command when thresholds are not met
+          emitWarning: false,
+          // thresholds for all files
+          global: {
+            statements: 50,
+            branches: 50,
+            functions: 50,
+            lines: 50
+          }
+        }
+      }
     }),
   );
   return config;
