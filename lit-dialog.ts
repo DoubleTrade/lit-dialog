@@ -1,74 +1,52 @@
-import { LitElement, css } from 'lit-element';
+import {
+  LitElement, property, PropertyValues,
+} from 'lit-element';
 import { html, render } from 'lit-html';
+
+import { TemplateResult } from 'lit-html/lib/template-result';
 
 import './lit-dialog-title';
 import './lit-dialog-close-icon';
 import './lit-dialog-button';
 
 class LitDialog extends LitElement {
-  static get properties() {
-    return {
-      /**
-       * opened (Boolean) [false] - Open/close the dialog depending on value (default to false)
-       * */
-      opened: {
-        type: Boolean,
-        hasChanged(newVal, oldVal) {
-          return (oldVal === false && newVal === true) || (oldVal === true && newVal === false);
-        }
-      },
-      /**
-       * title (String) - Title of the dialog
-       * */
-      title: { type: String },
-      /**
-       * closeOnEsc (Boolean) - Close on Pressing ESCAPE key  (default to false)
-       * */
-      closeOnEsc: { type: Boolean },
-      /**
-       * closeOnClickOutside (Boolean) - Close on Clicking outside  (default to false)
-       * */
-      closeOnClickOutside: { type: Boolean },
-      /**
-       * closeIcon (Boolean) - Display a close icon (default to false)
-       * */
-      closeIcon: { type: Boolean },
-      /**
-       * html (0bject) - Content to display, you can put a String, or a TemplateResult, if a string is supplied, returned
-       * */
-      html: {
-        type: Object,
-        converter: (value) => {
-          if (typeof value !== 'object') {
-            return html`${value}`
-          }
-        },
-      },
-      primaryAction: { type: Boolean },
-      primaryActionLabel: { type: String },
-      secondaryAction: { type: Boolean },
-      secondaryActionLabel: { type: String },
-    };
-  }
+  /**
+   * opened (Boolean) [false] - Open/close the dialog depending on value (default to false)
+   * */
+  @property({
+    type: Boolean,
+    hasChanged(newVal, oldVal) {
+      return (oldVal === false && newVal === true) || (oldVal === true && newVal === false);
+    },
+  }) opened = false;
 
-  constructor() {
-    super();
-    this.opened = false;
-    this.closeOnEsc = false;
-    this.closeIcon = false;
-    this.closeOnClickOutside = false;
-    this.title = '';
-    this.watchEscapeKey = this.watchEscapeKey.bind(this);
-    this.html = null;
+  @property({ type: String }) title = '';
 
-    this.primaryAction = false;
-    this.primaryActionLabel = 'Ok';
+  @property({ type: Boolean }) closeOnEsc = false;
 
-    this.secondaryAction = false;
-    this.secondaryActionLabel = 'Cancel';
-  }
+  @property({ type: Boolean }) closeOnClickOutside = false;
 
-  updated(properties) {
+  @property({ type: Boolean }) closeIcon = false;
+
+  @property({
+    type: Object,
+    converter: (value): TemplateResult | null => {
+      if (typeof value !== 'object') {
+        return html`${value}`;
+      }
+      return null;
+    },
+  }) html: TemplateResult | null = null;
+
+  @property({ type: Boolean }) primaryAction = false;
+
+  @property({ type: String }) primaryActionLabel = 'Ok';
+
+  @property({ type: Boolean }) secondaryAction = false;
+
+  @property({ type: String }) secondaryActionLabel = 'Cancel';
+
+  updated(properties: PropertyValues): void {
     // When 'opened' prop is updated, set/remove event listeners depending on opened state
     // And fire custom events (still depending on opened state
     if (properties.has('opened')) {
@@ -84,17 +62,19 @@ class LitDialog extends LitElement {
     }
   }
 
-  updateDialogContent() {
+  private updateDialogContent(): void {
     if (!this.opened) {
       return;
     }
-    if (!document.querySelector('#lit-dialog-overlay')) {
-      this.createDialogOverlayDiv();
+    let overlay = document.querySelector('#lit-dialog-overlay');
+    if (!overlay) {
+      overlay = this.createDialogOverlayDiv();
     }
-    render(this.dialogTemplate(), document.querySelector('#lit-dialog-overlay'));
+
+    render(this.dialogTemplate(), overlay);
   }
 
-  dialogTemplate() {
+  dialogTemplate(): TemplateResult {
     let header = null;
     if (this.title || this.closeIcon) {
       header = html`
@@ -200,79 +180,80 @@ class LitDialog extends LitElement {
     `;
   }
 
-  handlePrimaryAction(e) {
+  private handlePrimaryAction(): void {
     this.dispatchEvent(new CustomEvent('primary-action-clicked'));
   }
 
-  handleSecondaryAction(e) {
+  private handleSecondaryAction(): void {
     this.dispatchEvent(new CustomEvent('secondary-action-clicked'));
   }
 
-  createDialogOverlayDiv() {
+  private createDialogOverlayDiv(): HTMLElement {
     const id = 'lit-dialog-overlay';
-    if (document.getElementById(id)) {
-      return document.getElementById(id);
+    let overlayDiv: HTMLElement | null = document.getElementById(id);
+    if (overlayDiv) {
+      return overlayDiv;
     }
-    const overlay = document.createElement('div');
-    overlay.setAttribute('id', id);
-    return document.body.appendChild(overlay);
+    overlayDiv = document.createElement('div');
+    overlayDiv.setAttribute('id', id);
+    return document.body.appendChild(overlayDiv);
   }
 
-  addDialog() {
+  private addDialog(): void {
     this.setEventListeners();
     this.createDialogOverlayDiv();
     this.updateDialogContent();
   }
 
-  removeDialog() {
+  private removeDialog(): void {
     this.removeEventListeners();
-    if (document.querySelector('#lit-dialog-overlay')) {
-      document.body.removeChild(document.querySelector('#lit-dialog-overlay'));
+    const overlay = document.querySelector('#lit-dialog-overlay');
+    if (overlay) {
+      document.body.removeChild(overlay);
     }
   }
 
-  setEventListeners() {
-    document.addEventListener('keydown', this.watchEscapeKey);
-
+  private setEventListeners(): void {
+    document.addEventListener('keydown', this.watchEscapeKey.bind(this));
   }
 
-  removeEventListeners() {
-    document.removeEventListener('keydown', this.watchEscapeKey);
+  private removeEventListeners(): void {
+    document.removeEventListener('keydown', this.watchEscapeKey.bind(this));
   }
 
-  sendCustomEvent() {
+  private sendCustomEvent(): boolean {
     const event = new CustomEvent('opened-changed', {
       detail: {
         value: this.opened,
       },
     });
-    this.dispatchEvent(event);
+    return this.dispatchEvent(event);
   }
 
   /**
    * Close the Dialog
    */
-  close() {
+  close(): void {
     this.opened = false;
   }
 
   /**
    * Open the Dialog
    */
-  open() {
+  open(): void {
     this.opened = true;
   }
 
   /**
    * Pressing the ESC key will close the dialog
    */
-  watchEscapeKey(event) {
+  private watchEscapeKey(event: KeyboardEvent): void {
     if (event.key === 'Escape' && this.closeOnEsc) {
       this.close();
     }
   }
 
-  watchClickOutside() {
+  private watchClickOutside(): void {
     if (this.closeOnClickOutside) {
       this.close();
     }

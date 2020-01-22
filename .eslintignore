@@ -10,3 +10,7 @@ npm-debug.log
 *.out
 .sonar
 package-lock.json
+*.js.map
+*.d.ts
+*.d.ts.map
+*.js
