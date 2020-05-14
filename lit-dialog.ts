@@ -261,3 +261,4 @@ class LitDialog extends LitElement {
 }
 
 window.customElements.define('lit-dialog', LitDialog);
+export default LitDialog;
