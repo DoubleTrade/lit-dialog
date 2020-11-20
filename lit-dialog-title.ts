@@ -14,7 +14,7 @@ class LitDialogTitle extends LitElement {
         display: block;
       }
       .lit-dialog_title {
-        font - size: 17px;
+        font-size: 17px;
         color: black;
         margin-top: 0px;
         margin-bottom: 0px;
