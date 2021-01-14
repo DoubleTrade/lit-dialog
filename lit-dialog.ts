@@ -1,5 +1,5 @@
 import {
-  LitElement, property, PropertyValues,
+  LitElement, property, PropertyValues, customElement
 } from 'lit-element';
 import { html, render } from 'lit-html';
 
@@ -9,7 +9,8 @@ import './lit-dialog-title';
 import './lit-dialog-close-icon';
 import './lit-dialog-button';
 
-class LitDialog extends LitElement {
+@customElement('lit-dialog')
+export default class LitDialog extends LitElement {
   /**
    * opened (Boolean) [false] - Open/close the dialog depending on value (default to false)
    * */
@@ -259,6 +260,3 @@ class LitDialog extends LitElement {
     }
   }
 }
-
-window.customElements.define('lit-dialog', LitDialog);
-export default LitDialog;

@@ -1,11 +1,12 @@
 import {
-  LitElement, css, html, property,
+  LitElement, css, html, property, customElement
 } from 'lit-element';
 
 import { CSSResult } from 'lit-element/lib/css-tag';
 import { TemplateResult } from 'lit-html/lib/template-result';
 
-class LitDialogTitle extends LitElement {
+@customElement('lit-dialog-title')
+export default class LitDialogTitle extends LitElement {
   @property({ type: String }) title = '';
 
   static get styles(): CSSResult {
@@ -26,5 +27,3 @@ class LitDialogTitle extends LitElement {
     return html`<h2 class="lit-dialog_title"> ${this.title}</h2> `;
   }
 }
-
-window.customElements.define('lit-dialog-title', LitDialogTitle);

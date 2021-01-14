@@ -35,7 +35,7 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.0",
     "webpack-merge": "^4.1.5",
-    "typescript": "^4.0.3"
+    "typescript": "4.1.3"
   },
   "dependencies": {
     "@polymer/iron-demo-helpers": "3.1.0",
@@ -44,8 +44,8 @@
     "@polymer/paper-button": "^3.0.1",
     "@polymer/paper-icon-button": "^3.0.2",
     "@polymer/polymer": "3.2.0",
-    "lit-element": "^2.1.0",
-    "lit-html": "^1.1.2"
+    "lit-element": "2.4.0",
+    "lit-html": "1.3.0"
   },
   "repository": {
     "type": "git",
