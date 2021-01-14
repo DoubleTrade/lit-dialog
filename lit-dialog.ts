@@ -1,5 +1,8 @@
 import {
-  LitElement, property, PropertyValues, customElement
+  LitElement,
+  property,
+  PropertyValues,
+  customElement,
 } from 'lit-element';
 import { html, render } from 'lit-html';
 
@@ -17,9 +20,13 @@ export default class LitDialog extends LitElement {
   @property({
     type: Boolean,
     hasChanged(newVal, oldVal) {
-      return (oldVal === false && newVal === true) || (oldVal === true && newVal === false);
+      return (
+        (oldVal === false && newVal === true) ||
+        (oldVal === true && newVal === false)
+      );
     },
-  }) opened = false;
+  })
+  opened = false;
 
   @property({ type: String }) title = '';
 
@@ -37,7 +44,8 @@ export default class LitDialog extends LitElement {
       }
       return null;
     },
-  }) html: TemplateResult | null = null;
+  })
+  html: TemplateResult | null = null;
 
   @property({ type: Boolean }) primaryAction = false;
 
@@ -79,23 +87,29 @@ export default class LitDialog extends LitElement {
     let header = null;
     if (this.title || this.closeIcon) {
       header = html`
-      <style>
-        .lit-dialog_header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          flex-direction: row;
-          overflow: hidden;
-          padding: 15px;
-          margin-bottom: 20px;
-          border-bottom: 1px solid #e0e0e0;
-        }
-      </style>
-      <div class="lit-dialog_header">
-        ${(this.title) ? html`<lit-dialog-title title="${this.title}"></lit-dialog-title>` : null}
-        ${(this.closeIcon) ? html`<lit-dialog-close-icon @tap=${this.close.bind(this)}></lit-dialog-close-icon>` : null}
-      </div>
-    `;
+        <style>
+          .lit-dialog_header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: row;
+            overflow: hidden;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+          }
+        </style>
+        <div class="lit-dialog_header">
+          ${this.title
+            ? html`<lit-dialog-title title="${this.title}"></lit-dialog-title>`
+            : null}
+          ${this.closeIcon
+            ? html`<lit-dialog-close-icon
+                @tap=${this.close.bind(this)}
+              ></lit-dialog-close-icon>`
+            : null}
+        </div>
+      `;
     }
 
     let footer = null;
@@ -113,71 +127,81 @@ export default class LitDialog extends LitElement {
           }
         </style>
         <div class="lit-dialog_footer">
-          ${(this.primaryAction) ? html`<lit-dialog-button label="${this.primaryActionLabel}" @click="${this.handlePrimaryAction.bind(this)}">` : null}
-          ${(this.secondaryAction) ? html`<lit-dialog-button label="${this.secondaryActionLabel}" @click="${this.handleSecondaryAction.bind(this)}">` : null}
+          ${this.primaryAction
+            ? html`<lit-dialog-button
+                label="${this.primaryActionLabel}"
+                @click="${this.handlePrimaryAction.bind(this)}"
+              ></lit-dialog-button>`
+            : null}
+          ${this.secondaryAction
+            ? html`<lit-dialog-button
+                label="${this.secondaryActionLabel}"
+                @click="${this.handleSecondaryAction.bind(this)}"
+              ></lit-dialog-button>`
+            : null}
         </div>
       `;
     }
 
-    const htmlTemplate = (this.html) ? html`
-      <style>
-        .lit-dialog_content {
-          display: block;
-          overflow: hidden;
-        }
-      </style>
-      <div class="lit-dialog_content">
-        ${this.html}
-      </div>` : null;
+    const htmlTemplate = this.html
+      ? html` <style>
+            .lit-dialog_content {
+              display: block;
+              overflow: hidden;
+            }
+          </style>
+          <div class="lit-dialog_content">${this.html}</div>`
+      : null;
 
     return html`
-    <style>
-      :host {
-        display: block;
-      }
+      <style>
+        :host {
+          display: block;
+        }
 
-      .lit-dialog {
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        margin: auto;
-        justify-content: center;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-      }
+        .lit-dialog {
+          align-items: center;
+          display: flex;
+          flex-direction: column;
+          margin: auto;
+          justify-content: center;
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+        }
 
-      .lit-dialog_overlay {
-        background: rgba(0, 0, 0, 0.5);
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-      }
+        .lit-dialog_overlay {
+          background: rgba(0, 0, 0, 0.5);
+          position: fixed;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+        }
 
-      .lit-dialog_wrapper {
-        overflow: auto;
-        border-radius: 4px;
-        max-width: 90%;
-        max-height: 90%;
-        background: rgb(255, 255, 255);
-        position: fixed;
-        box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.5);
-      }
-    </style>
-    <div class="lit-dialog">
-      <div class="lit-dialog_overlay" @click="${() => this.watchClickOutside()}"></div>
-      <div class="lit-dialog_wrapper">
-        ${header}
-        ${htmlTemplate}
-        ${footer}
+        .lit-dialog_wrapper {
+          overflow: auto;
+          border-radius: 4px;
+          max-width: 90%;
+          max-height: 90%;
+          background: rgb(255, 255, 255);
+          position: fixed;
+          box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.5);
+        }
+      </style>
+      <div class="lit-dialog">
+        <div
+          class="lit-dialog_overlay"
+          @click="${() => this.watchClickOutside()}"
+        ></div>
+        <div class="lit-dialog_wrapper">
+          ${header} ${htmlTemplate} ${footer}
+        </div>
       </div>
-    </div>
     `;
   }
 

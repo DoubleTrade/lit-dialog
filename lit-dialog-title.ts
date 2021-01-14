@@ -1,6 +1,4 @@
-import {
-  LitElement, css, html, property, customElement
-} from 'lit-element';
+import { LitElement, css, html, property, customElement } from 'lit-element';
 
 import { CSSResult } from 'lit-element/lib/css-tag';
 import { TemplateResult } from 'lit-html/lib/template-result';
@@ -24,6 +22,6 @@ export default class LitDialogTitle extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<h2 class="lit-dialog_title"> ${this.title}</h2> `;
+    return html`<h2 class="lit-dialog_title">${this.title}</h2> `;
   }
 }
