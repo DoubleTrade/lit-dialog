@@ -11,7 +11,8 @@ export default class LitDialogCloseIcon extends LitElement {
     return css`
       :host {
         display: block;
-      }`;
+      }
+    `;
   }
 
   render(): TemplateResult {

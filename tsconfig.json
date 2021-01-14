@@ -10,8 +10,7 @@
       "dom"
     ],
     "allowSyntheticDefaultImports": true,
-    "declaration": true,
-    "declarationMap": true,
+    "esModuleInterop": true,
     "sourceMap": true,
     "inlineSources": true,
     "strict": true,
@@ -22,10 +21,19 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "skipLibCheck": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "plugins": [
+      {
+        "name": "ts-lit-plugin",
+        "strict": true
+      }
+    ]
   },
   "include": [
-    "*.ts",
-    "**/*.ts"
+    "./**/*.ts",
+    "*.ts"
+  ],
+  "exclude": [
+    "build/"
   ]
 }
