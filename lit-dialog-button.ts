@@ -1,12 +1,13 @@
 import {
-  LitElement, css, html, property,
+  LitElement, css, html, property, customElement
 } from 'lit-element';
 import '@polymer/paper-button/paper-button';
 
 import { CSSResult } from 'lit-element/lib/css-tag';
 import { TemplateResult } from 'lit-html/lib/template-result';
 
-class LitDialogButton extends LitElement {
+@customElement('lit-dialog-button')
+export default class LitDialogButton extends LitElement {
   @property({ type: String }) label = '';
 
   static get styles(): CSSResult {
@@ -26,5 +27,3 @@ class LitDialogButton extends LitElement {
       </paper-button>`;
   }
 }
-
-window.customElements.define('lit-dialog-button', LitDialogButton);
