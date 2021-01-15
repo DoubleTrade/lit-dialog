@@ -22,3 +22,9 @@ export default class LitDialogButton extends LitElement {
     </paper-button>`;
   }
 }
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'lit-dialog-button': LitDialogButton;
+  }
+}

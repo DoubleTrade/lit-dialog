@@ -284,3 +284,9 @@ export default class LitDialog extends LitElement {
     }
   }
 }
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'lit-dialog': LitDialog;
+  }
+}

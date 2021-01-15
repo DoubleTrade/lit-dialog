@@ -19,3 +19,9 @@ export default class LitDialogCloseIcon extends LitElement {
     return html`<paper-icon-button icon="close"></paper-icon-button>`;
   }
 }
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'lit-dialog-close-icon': LitDialogCloseIcon;
+  }
+}
