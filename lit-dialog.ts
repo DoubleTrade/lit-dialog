@@ -188,7 +188,7 @@ export default class LitDialog extends LitElement {
           border-radius: 4px;
           max-width: 90%;
           max-height: 90%;
-          background: rgb(255, 255, 255);
+          background: transparent;
           position: fixed;
           box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.5);
         }
