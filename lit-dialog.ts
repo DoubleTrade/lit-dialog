@@ -191,7 +191,7 @@ export default class LitDialog extends LitElement {
           max-height: 90%;
           background: transparent;
           position: fixed;
-          box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 0px 32px 0px var(--lit-dialog-box-shadow, rgba(0, 0, 0, 0.5));
         }
       </style>
       <div class="lit-dialog">
