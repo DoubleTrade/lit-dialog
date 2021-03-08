@@ -1,6 +1,6 @@
 {
   "name": "@doubletrade/lit-dialog",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "lit-dialog provides a basic dialog written in LitElement.",
   "main": "lit-dialog.js",
   "module": "lit-dialog.js",
