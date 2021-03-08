@@ -1,5 +1,11 @@
 # @doubletrade/lit-dialog
 
+## 2.7.0
+
+### Minor Changes
+
+- add more mixins
+
 ## 2.6.0
 
 ### Minor Changes
