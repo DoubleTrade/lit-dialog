@@ -1,5 +1,11 @@
 # @doubletrade/lit-dialog
 
+## 2.5.0
+
+### Minor Changes
+
+- add mixins to handle black theme
+
 ## 2.4.0
 
 ### Minor Changes
