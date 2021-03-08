@@ -96,7 +96,7 @@ export default class LitDialog extends LitElement {
             overflow: hidden;
             padding: 15px;
             margin-bottom: 20px;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: var(--lit-dialog-header-border, 1px solid #e0e0e0);
           }
         </style>
         <div class="lit-dialog_header">
@@ -173,7 +173,10 @@ export default class LitDialog extends LitElement {
         }
 
         .lit-dialog_overlay {
-          background: rgba(0, 0, 0, 0.5);
+          background-color: var(
+            --lit-dialog-overlay-background-color,
+            rgba(0, 0, 0, 0.5)
+          );
           position: fixed;
           top: 0;
           right: 0;
@@ -189,10 +192,11 @@ export default class LitDialog extends LitElement {
           border-radius: 4px;
           max-width: 90%;
           max-height: 90%;
-          background: transparent;
           position: fixed;
-          box-shadow: 0px 0px 32px 0px
-            var(--lit-dialog-box-shadow, rgba(0, 0, 0, 0.5));
+          box-shadow: var(
+            --lit-dialog-box-shadow,
+            0px 0px 32px 0px rgba(0, 0, 0, 0.5)
+          );
         }
       </style>
       <div class="lit-dialog">
