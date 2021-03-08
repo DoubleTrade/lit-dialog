@@ -11,6 +11,7 @@ export default class LitDialogCloseIcon extends LitElement {
     return css`
       :host {
         display: block;
+        color: var(--lit-dialog-close-icon-color, black);
       }
     `;
   }
