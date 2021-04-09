@@ -1,5 +1,11 @@
 # @doubletrade/lit-dialog
 
+## 2.9.0
+
+### Minor Changes
+
+- add map files in publicated sources
+
 ## 2.8.0
 
 ### Minor Changes
