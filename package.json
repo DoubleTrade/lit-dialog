@@ -56,7 +56,8 @@
     "*.js",
     "**/*.js",
     "*.d.ts",
-    "**/*.d.ts"
+    "**/*.d.ts",
+    "**/*.js.map"
   ],
   "repository": {
     "type": "git",
