@@ -1,5 +1,11 @@
 # @doubletrade/lit-dialog
 
+## 2.8.0
+
+### Minor Changes
+
+- just create changelog for existing uncommited version
+
 ## 2.7.0
 
 ### Minor Changes
