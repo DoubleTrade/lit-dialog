@@ -1,5 +1,11 @@
 # @doubletrade/lit-dialog
 
+## 2.10.0
+
+### Minor Changes
+
+- update lit-html version
+
 ## 2.9.0
 
 ### Minor Changes
