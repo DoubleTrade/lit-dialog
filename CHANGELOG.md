@@ -1,5 +1,11 @@
 # @doubletrade/lit-dialog
 
+## 2.11.0
+
+### Minor Changes
+
+- bump polymer
+
 ## 2.10.0
 
 ### Minor Changes
