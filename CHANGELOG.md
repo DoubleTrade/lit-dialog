@@ -1,5 +1,11 @@
 # @doubletrade/lit-dialog
 
+## 2.12.0
+
+### Minor Changes
+
+- added border-radius mixin on wrapper
+
 ## 2.11.0
 
 ### Minor Changes
