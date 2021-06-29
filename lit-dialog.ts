@@ -7,7 +7,6 @@ import {
 import { html, render } from 'lit-html';
 
 import { TemplateResult } from 'lit-html/lib/template-result';
-
 import './lit-dialog-title';
 import './lit-dialog-close-icon';
 import './lit-dialog-button';
@@ -189,7 +188,7 @@ export default class LitDialog extends LitElement {
         .lit-dialog_wrapper {
           background-color: var(--lit-dialog-background-color);
           overflow: auto;
-          border-radius: 4px;
+          border-radius: var(--lit-dialog-border-radius, 4px);
           max-width: 90%;
           max-height: 90%;
           position: fixed;
