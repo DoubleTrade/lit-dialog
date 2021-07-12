@@ -1,14 +1,12 @@
-import { LitElement, css, html, property, customElement } from 'lit-element';
+import { LitElement, css, html } from 'lit';
+import { property, customElement } from 'lit/decorators.js';
 import '@polymer/paper-button/paper-button';
-
-import { CSSResult } from 'lit-element/lib/css-tag';
-import { TemplateResult } from 'lit-html/lib/template-result';
 
 @customElement('lit-dialog-button')
 export default class LitDialogButton extends LitElement {
   @property({ type: String }) label = '';
 
-  static get styles(): CSSResult {
+  static get styles() {
     return css`
       .lit-dialog_button {
         float: right;
@@ -16,8 +14,8 @@ export default class LitDialogButton extends LitElement {
     `;
   }
 
-  render(): TemplateResult {
-    return html` <paper-button class="lit-dialog_button" ?raised="${true}">
+  render() {
+    return html`<paper-button class="lit-dialog_button" ?raised="${true}">
       ${this.label}
     </paper-button>`;
   }

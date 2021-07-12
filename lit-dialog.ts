@@ -1,12 +1,5 @@
-import {
-  LitElement,
-  property,
-  PropertyValues,
-  customElement,
-} from 'lit-element';
-import { html, render } from 'lit-html';
-
-import { TemplateResult } from 'lit-html/lib/template-result';
+import { LitElement, html, TemplateResult, PropertyValues, render } from 'lit';
+import { property, customElement } from 'lit/decorators.js';
 import './lit-dialog-title';
 import './lit-dialog-close-icon';
 import './lit-dialog-button';
@@ -74,7 +67,7 @@ export default class LitDialog extends LitElement {
     if (!this.opened) {
       return;
     }
-    let overlay = document.querySelector('#lit-dialog-overlay');
+    let overlay = document.querySelector<HTMLElement>('#lit-dialog-overlay');
     if (!overlay) {
       overlay = this.createDialogOverlayDiv();
     }
@@ -82,7 +75,7 @@ export default class LitDialog extends LitElement {
     render(this.dialogTemplate(), overlay);
   }
 
-  dialogTemplate(): TemplateResult {
+  dialogTemplate() {
     let header = null;
     if (this.title || this.closeIcon) {
       header = html`

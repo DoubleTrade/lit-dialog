@@ -1,13 +1,11 @@
-import { LitElement, css, html, property, customElement } from 'lit-element';
-
-import { CSSResult } from 'lit-element/lib/css-tag';
-import { TemplateResult } from 'lit-html/lib/template-result';
+import { LitElement, css, html } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 
 @customElement('lit-dialog-title')
 export default class LitDialogTitle extends LitElement {
   @property({ type: String }) title = '';
 
-  static get styles(): CSSResult {
+  static get styles() {
     return css`
       :host {
         display: block;
@@ -21,7 +19,7 @@ export default class LitDialogTitle extends LitElement {
     `;
   }
 
-  render(): TemplateResult {
+  render() {
     return html`<h2 class="lit-dialog_title">${this.title}</h2> `;
   }
 }

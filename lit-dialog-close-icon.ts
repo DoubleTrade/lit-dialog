@@ -1,13 +1,11 @@
-import { LitElement, css, html, customElement } from 'lit-element';
+import { LitElement, css, html } from 'lit';
+import { customElement } from 'lit/decorators.js';
 import '@polymer/iron-icons/iron-icons';
 import '@polymer/paper-icon-button/paper-icon-button';
 
-import { CSSResult } from 'lit-element/lib/css-tag';
-import { TemplateResult } from 'lit-html/lib/template-result';
-
 @customElement('lit-dialog-close-icon')
 export default class LitDialogCloseIcon extends LitElement {
-  static get styles(): CSSResult {
+  static get styles() {
     return css`
       :host {
         display: block;
@@ -15,7 +13,7 @@ export default class LitDialogCloseIcon extends LitElement {
     `;
   }
 
-  render(): TemplateResult {
+  render() {
     return html`<paper-icon-button icon="close"></paper-icon-button>`;
   }
 }

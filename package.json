@@ -49,8 +49,7 @@
     "@polymer/paper-button": "3.0.1",
     "@polymer/paper-icon-button": "3.0.2",
     "@polymer/polymer": "3.4.1",
-    "lit-element": "2.4.0",
-    "lit-html": "1.4.1"
+    "lit": "2.0.0-rc.2"
   },
   "files": [
     "*.js",
@@ -88,7 +87,8 @@
     "rules": {
       "class-methods-use-this": "off",
       "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": "error"
+      "@typescript-eslint/no-unused-vars": "error",
+      "import/extensions": "off"
     },
     "root": true
   },
