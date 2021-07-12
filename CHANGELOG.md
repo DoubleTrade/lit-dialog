@@ -1,5 +1,11 @@
 # @doubletrade/lit-dialog
 
+## 3.0.0
+
+### Major Changes
+
+- Migrate to lit
+
 ## 2.12.0
 
 ### Minor Changes
